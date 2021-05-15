@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON axios</title>
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/json_axios.js"></script>
+  
+
+</head>
+<body>
+
+<h1> test </h1>
+
+    <div class="container"></div>
+
+    <script>
+      
+        const container = document.querySelector(".container");
+        const showShortcuts = () => {
+        let output = ""
+   
+        axios.get('http://localhost:3000/shortcuts/')
+          .then(resp => {
+              data = resp.data
+               
+              data.forEach(e => {
+                  (output += `
+                  <div class="card">
+                    <h1>${e.name}</h1>
+                    <a href="${e.url}">Webbsida</a>
+                  </div>
+                  `);
+        
+               
+                
+                  
+                  container.innerHTML = output
+              });
+          })
+          
+          .catch(error => {
+              console.log(error);
+          });    
+        }
+        
+        document.addEventListener("DOMContentLoaded", showShortcuts)
+        
+        </script>
+
+
+</body>
+</html>
